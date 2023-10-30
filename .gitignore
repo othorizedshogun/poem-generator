@@ -1,0 +1,5 @@
+/.conda
+/anaconda
+
+/kaggle.json
+/get_kaggle_output.ipynb
