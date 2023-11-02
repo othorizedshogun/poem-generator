@@ -1,9 +1,9 @@
 """Main Page for streamlit app"""
 
-# from model import poem_gen_model
+from model import poem_gen_model
 
 def app():
-    import streamlit as st
+    import streamlit as stst
 
     st.set_page_config(page_title="versiforg")
 

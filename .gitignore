@@ -2,6 +2,7 @@
 /anaconda
 /.ipynb_checkpoints
 /__pycache__
+/streamlitApp
 
 /kaggle.json
 /get_kaggle_output.ipynb
