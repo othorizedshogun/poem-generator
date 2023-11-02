@@ -19,7 +19,8 @@ class Inference:
     "Inference class"
     def __init__(self, gen_model_tokenizer, gen_model):
         self.tokenizer = gen_model_tokenizer
-        self.model = gen_model   
+        self.model = gen_model
+        
     def tokenize(self, inputs, action):
         """
         Wrapper to tokenize inputs and outputs from the model.
@@ -31,6 +32,7 @@ class Inference:
         else:
             return None
         return tok_data
+    
     @st.cache_data
     def create_poem(_self, inputs):
         """
