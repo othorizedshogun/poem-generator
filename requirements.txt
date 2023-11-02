@@ -1,0 +1,4 @@
+streamlit
+python-decouple
+transformers @ git+https://github.com/huggingface/transformers.git@8211c59b9a8fe84d2861446b26542f89a0260e64
+peft @ git+https://github.com/huggingface/peft.git@884b1ac3a8ef49c9301b5bbf02e8bc64349e95f9

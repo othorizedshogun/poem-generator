@@ -1,5 +1,7 @@
 /.conda
 /anaconda
+/.ipynb_checkpoints
+/__pycache__
 
 /kaggle.json
 /get_kaggle_output.ipynb
