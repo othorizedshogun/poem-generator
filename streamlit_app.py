@@ -17,15 +17,19 @@ def app():
     @st.cache_resource
     def load_config():
         return PeftConfig.from_pretrained(ADAPTER_PATH)
+    
     @st.cache_resource
     def load_tokenizer():
         return AutoTokenizer.from_pretrained(config.base_model_name_or_path)
+    
     @st.cache_resource
     def load_model():
         return AutoModelForCausalLM.from_pretrained(config.base_model_name_or_path)
+    
     config = load_config()
     tokenizer = load_tokenizer()
     model = load_model()
+    
     ## Loading the LoRA model i.e base model along with the adapter
     inference_model = PeftModel.from_pretrained(model, ADAPTER_PATH)
     poem_gen_model = Inference(tokenizer, inference_model)
@@ -64,4 +68,5 @@ def app():
             poem = poem_gen_model.create_poem(inputs)
             print(poem[len(inputs):])
             st.text(poem[len(inputs):])
+
 app()
