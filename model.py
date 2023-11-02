@@ -60,4 +60,4 @@ class Inference:
         )
         return self.tokenize(outputs, "decode")
 
-poem_gen_model = Inference(tokenizer, model)a
+poem_gen_model = Inference(tokenizer, model)
