@@ -37,12 +37,12 @@ class Inference:
         Wrapper to tokenize inputs and outputs from the model.
         """
         if action == "encode":
-            outputs = self.tokenizer(inputs, return_tensors="pt")
+            tok_data = self.tokenizer(inputs, return_tensors="pt")
         elif action == "decode":
-            outputs = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+            tok_data = self.tokenizer.decode(inputs[0], skip_special_tokens=True)
         else:
             return None
-        return outputs
+        return tok_data
 
     def create_poem(self, inputs):
         """
@@ -60,4 +60,4 @@ class Inference:
         )
         return self.tokenize(outputs, "decode")
 
-poem_gen_model = Inference(tokenizer, model)
+poem_gen_model = Inference(tokenizer, model)a
