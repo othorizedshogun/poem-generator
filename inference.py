@@ -1,16 +1,5 @@
 """Inference"""
-
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import PeftConfig, PeftModel
-
-ADAPTER_PATH = "./model/"
-
-config = PeftConfig.from_pretrained(ADAPTER_PATH)
-tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
-model = AutoModelForCausalLM.from_pretrained(config.base_model_name_or_path)
-
-# Loading the LoRA model i.e base model along with the adapter
-inference_model = PeftModel.from_pretrained(model, ADAPTER_PATH)
+import streamlit as st
 
 # def create_poem(prompt):
 #     inputs = tokenizer(prompt, return_tensors="pt")
@@ -30,8 +19,7 @@ class Inference:
     "Inference class"
     def __init__(self, gen_model_tokenizer, gen_model):
         self.tokenizer = gen_model_tokenizer
-        self.model = gen_model
-
+        self.model = gen_model   
     def tokenize(self, inputs, action):
         """
         Wrapper to tokenize inputs and outputs from the model.
@@ -43,13 +31,13 @@ class Inference:
         else:
             return None
         return tok_data
-
-    def create_poem(self, inputs):
+    @st.cache_data
+    def create_poem(_self, inputs):
         """
         Wrapper to generate poems with the model.
         """
-        inputs = self.tokenize(inputs, "encode")
-        outputs = self.model.generate(
+        inputs = _self.tokenize(inputs, "encode")
+        outputs = _self.model.generate(
             **inputs,
             max_length=200,
             num_beams=10,
@@ -58,6 +46,4 @@ class Inference:
             early_stopping=True,
             temperature=0.61
         )
-        return self.tokenize(outputs, "decode")
-
-poem_gen_model = Inference(tokenizer, model)
+        return _self.tokenize(outputs, "decode")
